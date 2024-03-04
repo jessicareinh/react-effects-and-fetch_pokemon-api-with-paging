@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 
 export default function PokemonList() {
   const [pokemon, setPokemon] = useState([]);
-
+  const [page, setPage] = useState[0];
+  const limit = 20;
   useEffect(() => {
     async function loadPokemon() {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?offset=0"
+          `https://pokeapi.co/api/v2/pokemon?offset=${limit * page}`
         );
         const data = await response.json();
         setPokemon(data.results);
